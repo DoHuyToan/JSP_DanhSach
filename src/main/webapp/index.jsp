@@ -1,6 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Customer" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+
+<%--Thêm khi làm JSTL--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 11/9/2021
@@ -20,6 +23,8 @@
     customerList.add(new Customer("02", "Thảo ảo tùng chảo", 16, "Phú Thọ thích hàng họ", "Thao.jpg"));
     customerList.add(new Customer("03", "Định Hà", 13, "Nam Định nịnh Hà", "Tuan.jpg"));
 
+//    JSTL thêm dòng sau
+    request.setAttribute("danhSach", customerList);
 
   %>
   <table border="1px" style="color: red">
@@ -33,19 +38,32 @@
       <td>Địa chỉ</td>
       <td>Ảnh mô tả tội phạm</td>
     </tr>
-    <%
-      for (Customer c: customerList) {
-    %>
-    <tr>
-      <td><%=c.getId()%></td>
-      <td><%=c.getName()%></td>
-      <td><%=c.getAge()%></td>
-      <td><%=c.getAddress()%></td>
-      <td><img height="180px" width="130px" src="<%=c.getImage()%>"></td>
-    </tr>
-      <%
-      }
-      %>
+<%--    Cách làm theo JSTL--%>
+    <c:forEach items="${danhSach}" var="ds">
+          <tr>
+            <td>${ds.id}</td>
+            <td>${ds.name}</td>
+            <td>${ds.age}</td>
+            <td>${ds.address}</td>
+            <td><img height="180px" width="130px" src="${ds.getImage()}"></td>
+          </tr>
+    </c:forEach>
+
+
+<%--    Cách làm theo JSP--%>
+<%--    <%--%>
+<%--      for (Customer c: customerList) {--%>
+<%--      %>--%>
+<%--    <tr>--%>
+<%--      <td><%=c.getId()%></td>--%>
+<%--      <td><%=c.getName()%></td>--%>
+<%--      <td><%=c.getAge()%></td>--%>
+<%--      <td><%=c.getAddress()%></td>--%>
+<%--      <td><img height="180px" width="130px" src="<%=c.getImage()%>"></td>--%>
+<%--    </tr>--%>
+<%--      <%--%>
+<%--      }--%>
+<%--      %>--%>
 
   </table>
 
