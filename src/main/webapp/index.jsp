@@ -1,8 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Customer" %>
 <%@ page import="java.util.ArrayList" %>
-
-<%--Thêm khi làm JSTL--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
